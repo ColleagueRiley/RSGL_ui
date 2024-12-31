@@ -3,7 +3,7 @@
 
 A Single-header UI extension for RSGL 
 ---
-RSGL is a modular simple-to-use cross-platform graphics library. It attempts to combine the freedoms of low libraries with modern C techniques. Thus offering simplicity and convenience.
+[RSGL](https://github.com/ColleagueRiley/RSGL) is a modular simple-to-use cross-platform graphics library. It attempts to combine the freedoms of low libraries with modern C techniques. Thus offering simplicity and convenience.
 
 The RSGL.h header itself does not handle rendering nor input devices itself, both must be handled externally.  
 
