@@ -53,6 +53,9 @@ jobs:
       run: |
         clang --version
         
+        make clean
+        rm -f libRSGL.dylib
+
         # Extract version numbers from Makefile
         brew install grep
         
