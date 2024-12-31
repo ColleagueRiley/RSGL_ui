@@ -67,7 +67,7 @@ jobs:
         rm -f RSGL.o
         
         # Join x86_64 and arm64 static
-        lipo -create -output build/${{ env.RELEASE_NAME }}/lib/libRSGL.a /tmp/libRSGL_ui_x86_64.a /tmp/libRSGL_ui_arm64.a
+        lipo -create -output build/${{ env.RELEASE_NAME }}/lib/libRSGL.a /tmp/libRSGL_x86_64.a /tmp/libRSGL_arm64.a
         
         # Build RSGL_ui x86_64 dynamic
         make CUSTOM_CFLAGS="-target x86_64-apple-macos10.12 -DGL_SILENCE_DEPRECATION"
@@ -76,11 +76,11 @@ jobs:
         
         # Build RSGL_ui arm64 dynamic
         make CUSTOM_CFLAGS="-target arm64-apple-macos11 -DGL_SILENCE_DEPRECATION"
-        mv libRSGL.dylib /tmp/libRSGL_ui_arm64.dylib
+        mv libRSGL.dylib /tmp/libRSGL_arm64.dylib
         
         # Join x86_64 and arm64 dynamic
         rm -f ./build/lib/*
-        lipo -create -output libRSGL.dylib /tmp/libRSGL_ui_x86_64.dylib /tmp/libRSGL_ui_arm64.dylib
+        lipo -create -output libRSGL.dylib /tmp/libRSGL_x86_64.dylib /tmp/libRSGL_arm64.dylib
         ln -sv libRSGL.dylib  build/${{ env.RELEASE_NAME }}/lib/libRSGL.dylib
   
     - name: Generate Artifacts
