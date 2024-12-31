@@ -57,7 +57,6 @@ jobs:
         cp -v ./RSGL_ui.h ./build/${{ env.RELEASE_NAME }}/include
         cp -v ./RSGL_gl.h ./build/${{ env.RELEASE_NAME }}/include
         cp -v -r ./deps ./build/${{ env.RELEASE_NAME }}/include
-        cp -v ./libRSGL.a ./build/${{ env.RELEASE_NAME }}/lib
         cp -v ./README.md ./build/${{ env.RELEASE_NAME }}/README.md
         cp -v ./LICENSE ./build/${{ env.RELEASE_NAME }}/LICENSE
         cd build
