@@ -58,12 +58,12 @@ jobs:
         
         # Build RSGL_ui x86_64 static
         make CUSTOM_CFLAGS="-target x86_64-apple-macos10.12 -DGL_SILENCE_DEPRECATION"
-        mv libRSGL.a /tmp/libRSGL_ui_x86_64.a
+        mv libRSGL.a /tmp/libRSGL_x86_64.a
         rm -f RSGL.o
         
         # Build RSGL_ui arm64 static
         make CUSTOM_CFLAGS="-target arm64-apple-macos11 -DGL_SILENCE_DEPRECATION"
-        mv libRSGL.a /tmp/libRSGL_ui_arm64.a
+        mv libRSGL.a /tmp/libRSGL_arm64.a
         rm -f RSGL.o
         
         # Join x86_64 and arm64 static
