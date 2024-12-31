@@ -72,17 +72,9 @@ EXAMPLE_OUTPUTS = \
 	button \
 	textbox
 
-all: xdg-shell.c $(EXAMPLE_OUTPUTS) advanced/rsoft ../libRSGL$(LIB_EXT) ../libRSGL.a
+all: xdg-shell.c $(EXAMPLE_OUTPUTS) ../libRSGL$(LIB_EXT) ../libRSGL.a
 
 examples: $(EXAMPLE_OUTPUTS)
-
-
-advanced/rsoft: advanced/rsoft.c ../RSGL.h
-ifeq ($(CC),emcc)
-	$(CC) $(CFLAGS) $(WARNIGNS) -I../ $< -s LEGACY_GL_EMULATION -D LEGACY_GL_EMULATION -sGL_UNSAFE_OPTS=0 -s EXPORTED_RUNTIME_METHODS="['stringToNewUTF8']" -o $@$(EXT)
-else
-	$(CC) $(CFLAGS) $(WARNIGNS) -I../ $< $(LIBS) -o $@$(EXT)
-endif
 
 advanced/glfw: advanced/glfw.c ../RSGL.h 
 	$(CC) $(CFLAGS) $(WARNIGNS) -I../ $< $(LIBS) -lglfw -o $@$(EXT)
