@@ -174,10 +174,10 @@ Ensure you're running the example in the `./examples` folder so the fonts are pr
 NOTE: Most of these examples use `RSGL_rgfw.h`, but you can use whatever backend you want.
 
 ### RSGL_ui.h
-![example screenshot 2](https://github.com/ColleagueRiley/RSGL/blob/main/screenshot2.PNG?raw=true)
-![example screenshot 3](https://github.com/ColleagueRiley/RSGL/blob/main/screenshot3.PNG?raw=true)
-![example screenshot 4](https://github.com/ColleagueRiley/RSGL/blob/main/screenshot4.PNG?raw=true)
-![example screenshot 5](https://github.com/ColleagueRiley/RSGL/blob/main/screenshot5.PNG?raw=true)
+![example screenshot 2](https://github.com/ColleagueRiley/RSGL_ui/blob/main/screenshot2.PNG?raw=true)
+![example screenshot 3](https://github.com/ColleagueRiley/RSGL_ui/blob/main/screenshot3.PNG?raw=true)
+![example screenshot 4](https://github.com/ColleagueRiley/RSGL_ui/blob/main/screenshot4.PNG?raw=true)
+![example screenshot 5](https://github.com/ColleagueRiley/RSGL_ui/blob/main/screenshot5.PNG?raw=true)
 
 ## advanced/glfw.c
 `examples/advanced/glfw.c` is an example that shows how you can use RSGL with GLFW
