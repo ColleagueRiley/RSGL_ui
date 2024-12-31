@@ -65,9 +65,9 @@ jobs:
         ${{ matrix.ARCH }}-w64-mingw32-gcc.exe --version
         windres.exe --version
         dir C:\msys64\mingw64\bin
-        rm -f RSGL_ui.o 
+        rm -f RSGL.o 
         make CC=${{ matrix.ARCH }}-w64-mingw32-gcc.exe
-        copy /Y .\libRSGL_ui.dll .\build\${{ env.RELEASE_NAME }}\lib
+        copy /Y .\libRSGL.dll .\build\${{ env.RELEASE_NAME }}\lib
       shell: cmd
       if: |
         matrix.compiler == 'mingw-w64' &&
@@ -76,9 +76,10 @@ jobs:
     - name: Generate Artifacts
       run: |
         copy /Y .\RSGL_ui.h .\build\${{ env.RELEASE_NAME }}\include
+        copy /Y .\RSGL.h .\build\${{ env.RELEASE_NAME }}\include
         copy /Y .\RSGL_ui_gl.h .\build\${{ env.RELEASE_NAME }}\include
         xcopy .\deps .\build\${{ env.RELEASE_NAME }}\include /E /I /Y
-        copy /Y .\libRSGL_ui.a .\build\${{ env.RELEASE_NAME }}\lib
+        copy /Y .\libRSGL.a .\build\${{ env.RELEASE_NAME }}\lib
         copy /Y .\README.md .\build\${{ env.RELEASE_NAME }}\README.md
         copy /Y .\LICENSE .\build\${{ env.RELEASE_NAME }}\LICENSE
         cd build
