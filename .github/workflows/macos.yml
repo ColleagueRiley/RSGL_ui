@@ -25,7 +25,7 @@ jobs:
     runs-on: macos-latest
     
     env:
-      RELEASE_NAME: RSGL-dev_macos
+      RELEASE_NAME: RSGL_ui-dev_macos
     
     steps:
     - name: Checkout
@@ -33,7 +33,7 @@ jobs:
     
     - name: Setup Release Version
       run: |
-        echo "RELEASE_NAME=RSGL-${{ github.event.release.tag_name }}_macos" >> $GITHUB_ENV
+        echo "RELEASE_NAME=RSGL_ui-${{ github.event.release.tag_name }}_macos" >> $GITHUB_ENV
       shell: bash
       if: github.event_name == 'release' && github.event.action == 'published'
 
@@ -56,42 +56,42 @@ jobs:
         # Extract version numbers from Makefile
         brew install grep
         
-        # Build RSGL x86_64 static
+        # Build RSGL_ui x86_64 static
         make CUSTOM_CFLAGS="-target x86_64-apple-macos10.12 -DGL_SILENCE_DEPRECATION"
-        mv libRSGL.a /tmp/libRSGL_x86_64.a
-        rm -f RSGL.o
+        mv libRSGL_ui.a /tmp/libRSGL_ui_x86_64.a
+        rm -f RSGL_ui.o
         
-        # Build RSGL arm64 static
+        # Build RSGL_ui arm64 static
         make CUSTOM_CFLAGS="-target arm64-apple-macos11 -DGL_SILENCE_DEPRECATION"
-        mv libRSGL.a /tmp/libRSGL_arm64.a
-        rm -f RSGL.o
+        mv libRSGL_ui.a /tmp/libRSGL_ui_arm64.a
+        rm -f RSGL_ui.o
         
         # Join x86_64 and arm64 static
-        lipo -create -output build/${{ env.RELEASE_NAME }}/lib/libRSGL.a /tmp/libRSGL_x86_64.a /tmp/libRSGL_arm64.a
+        lipo -create -output build/${{ env.RELEASE_NAME }}/lib/libRSGL_ui.a /tmp/libRSGL_ui_x86_64.a /tmp/libRSGL_ui_arm64.a
         
-        # Build RSGL x86_64 dynamic
+        # Build RSGL_ui x86_64 dynamic
         make CUSTOM_CFLAGS="-target x86_64-apple-macos10.12 -DGL_SILENCE_DEPRECATION"
-        mv libRSGL.dylib /tmp/libRSGL_x86_64.dylib
-        rm -f RSGL.o
+        mv libRSGL_ui.dylib /tmp/libRSGL_ui_x86_64.dylib
+        rm -f RSGL_ui.o
         
-        # Build RSGL arm64 dynamic
+        # Build RSGL_ui arm64 dynamic
         make CUSTOM_CFLAGS="-target arm64-apple-macos11 -DGL_SILENCE_DEPRECATION"
-        mv libRSGL.dylib /tmp/libRSGL_arm64.dylib
+        mv libRSGL_ui.dylib /tmp/libRSGL_ui_arm64.dylib
         
         # Join x86_64 and arm64 dynamic
         rm -f ./build/lib/*
-        lipo -create -output libRSGL.dylib /tmp/libRSGL_x86_64.dylib /tmp/libRSGL_arm64.dylib
-        ln -sv libRSGL.dylib  build/${{ env.RELEASE_NAME }}/lib/libRSGL.dylib
+        lipo -create -output libRSGL_ui.dylib /tmp/libRSGL_ui_x86_64.dylib /tmp/libRSGL_ui_arm64.dylib
+        ln -sv libRSGL_ui.dylib  build/${{ env.RELEASE_NAME }}/lib/libRSGL_ui.dylib
   
     - name: Generate Artifacts
       run: |
         mkdir -p build
         mkdir -p build/include
         mkdir -p build/lib
-        cp -v ./RSGL.h ./build/${{ env.RELEASE_NAME }}/include
-        cp -v ./RSGL_gl.h ./build/${{ env.RELEASE_NAME }}/include
+        cp -v ./RSGL_ui.h ./build/${{ env.RELEASE_NAME }}/include
+        cp -v ./RSGL_ui_gl.h ./build/${{ env.RELEASE_NAME }}/include
         cp -v -r ./deps ./build/${{ env.RELEASE_NAME }}/include
-        cp -v ./libRSGL.a ./build/${{ env.RELEASE_NAME }}/lib
+        cp -v ./libRSGL_ui.a ./build/${{ env.RELEASE_NAME }}/lib
         cp -v ./README.md ./build/${{ env.RELEASE_NAME }}/README.md
         cp -v ./LICENSE ./build/${{ env.RELEASE_NAME }}/LICENSE
         cd build
