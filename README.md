@@ -90,14 +90,14 @@ int main(void) {
 
 	while (RGFW_window_shouldClose(win) == false) {
 		while (RSGL_checkEvent(win)) {
-            if (win->event.type == RGFW_quit) {
-                break;
-            }
-        }
+      if (win->event.type == RGFW_quit) {
+          break;
+      }
+    }
 		
 		RSGL_openBlankContainer(RSGL_RECT(0, 0, win->r.w, win->r.h));
 		
-        RSGL_drawText(RSGL_strFmt("toggle %s", toggle ? "on" : "off"), RSGL_CIRCLE(0, 40, 40), RSGL_RGB(255, 0, 0));
+    RSGL_drawText(RSGL_strFmt("toggle %s", toggle ? "on" : "off"), RSGL_CIRCLE(0, 40, 40), RSGL_RGB(255, 0, 0));
 		RSGL_toggleButton(RSGL_RECTF(50, 125, 100, 50), RSGL_STYLE_LIGHT | RSGL_STYLE_ROUND, &toggle);
         
 		RSGL_clear(RSGL_RGB(255, 255, 255));
